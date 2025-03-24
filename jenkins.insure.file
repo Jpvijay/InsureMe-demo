@@ -28,5 +28,12 @@ pipeline {
            sh 'docker build -t vijayhub11/insureme:latest .'
             }
           }
+    stage('Login to Dockerhub') {
+      steps {
+             withCredentials([usernamePassword(credentialsId: 'dockerusercred', passwordVariable: 'dockerpass', usernameVariable: 'dockeruser')]) {
+           sh 'docker login -u vijayhub11 -p ${dockerpass}'
+}
+}
+}
 }
 }
