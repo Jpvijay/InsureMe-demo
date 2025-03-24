@@ -10,16 +10,17 @@ pipeline {
          git branch: 'main', url: 'https://github.com/Jpvijay/InsureMe-demo.git'
                           }
             }
-    stage('Create a Package') {
+    stage('Maven Package') {
       steps {
-         echo 'This will create a package using maven'
-         sh 'mvn package'
-                             }
+           echo 'This is for packaging the application'
+           sh 'mvn package'
             }
-    stage('Publish the HTML Reports') {
+          }
+    stage('Test Results') {
       steps {
-          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insure-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-                        }
+           echo 'This is for generating Test Results'
+           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insureme/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
+          }
 }
 }
