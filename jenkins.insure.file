@@ -35,7 +35,7 @@ pipeline {
 }
 }
 }
-    stage('Push Docker image') {
+    stage('Push thee Docker image') {
       steps {
         sh 'docker push vijayhub11/insureme:latest'
                                 }
